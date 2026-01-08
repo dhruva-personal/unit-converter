@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strconv"
 
 	"github.com/go-chi/chi/v5"
@@ -18,7 +20,11 @@ type ConversionResult struct {
 func lengthHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(http.StatusOK)
-	http.ServeFile(w, r, "frontend/length.html")
+	// http.ServeFile(w, r, "frontend/length.html")
+
+	cwd, _ := os.Getwd()
+	filePath := filepath.Join(cwd, "frontend/length.html")
+	http.ServeFile(w, r, filePath)
 }
 
 func convert(convType string, amount float64, from string, to string) (float64, error) {
