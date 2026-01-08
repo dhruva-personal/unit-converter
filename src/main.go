@@ -149,5 +149,5 @@ func main() {
 		json.NewEncoder(w).Encode(ConversionResult{Result: result})
 	})
 
-	http.ListenAndServe(":80", r)
+	http.ListenAndServe(":8080", r)
 }
